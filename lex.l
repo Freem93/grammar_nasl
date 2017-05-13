@@ -55,7 +55,10 @@ void count();
 "=~" { count(); return(ASSIGN_BIT); }
 "!~" { count(); return(NOT_BIT); }
 "~" { count(); return(BIT); }
+"->" { count(); return(ARROW); }
 
+/*регул€рка - надо подумать*/ { count(); return(INTEGER); }
+/*регул€рка - надо подумать*/ { count(); return(STRING); }
 
 "><" { count(); return(SEARCH_SUBSTR); }
 ">|<" { count(); return(NOT_SEARCH_SUBSTR); }

@@ -256,6 +256,52 @@ expression:
 			| atom 
 			| const_array 
 			;
+			
+const_array:    
+			'[' list_array_data ']' 
+			;
+
+list_array_data: 
+				array_data 
+				| array_data ',' list_array_data
+				;
+
+array_data: 
+			simple_array_data 
+			| string ARROW simple_array_data 
+			;
+			
+atom: 
+	INTEGER 
+    | STRING1
+	; 
+
+simple_array_data: 
+				atom
+				;
+
+var: 
+	var_name 
+	| array_elem 
+	| func_call
+	;
+
+var_name: 
+		identifier
+		;
+		
+ipaddr: 
+		INTEGER '.' INTEGER '.' INTEGER '.' INTEGER
+		;
+
+loc: 
+	LOCAL arg_decl
+	;
+
+glob: 
+	GLOBAL arg_decl
+	;		
+			
 	
 %%
 yyerror(char const *s)
