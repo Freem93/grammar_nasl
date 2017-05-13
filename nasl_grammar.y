@@ -62,33 +62,68 @@ start:
 	;
 	
 command_declaration_list:
-	command_declaration
-	| command_declaration command_declaration_list
-	;
+						command_declaration
+						| command_declaration command_declaration_list
+						;
 	
-command_declaration: command_declaration
-	|function_declaration
-	;
+command_declaration: 
+					command_declaration
+					|function_declaration
+					;
 	
-function_declaration: FUNCTION '(' argument_declaration ')' body
-	;
+function_declaration: 
+					FUNCTION '(' argument_declaration ')' body
+					;
 
 argument_declaration:  
-	| first_argument_declaration 
-	;
+					| first_argument_declaration 
+					;
 
-first_argument_declaration: identifier 
-       | identifier ',' first_argument_declaration
-	   ;
+first_argument_declaration: 
+							identifier 
+							| identifier ',' first_argument_declaration
+							;
 
-body: '{' command_list '}' 
+body: 
+	'{' command_list '}' 
 	| '{' '}' 
 	;
 	
-command_list: command
-	| command command_list
+command_list: 
+			command
+			| command command_list
+			;
+	
+command: 
+		simple_command ';' 
+		| body 
+		| if_body 
+		| loop 
+		;
+		
+simple_command : 
+				| aff 
+				| post_pre_incr 
+				| rep
+				| func_call 
+				| ret 
+				| inc 
+				| loc 
+				| glob
+				| BREAK 
+				| CONTINUE 
+				;
+				
+ret: 
+	RETURN expression
+	| RETURN
 	;
 	
+if_body: 
+		IF '(' expression ')' command
+		| IF '(' expression ')' command ELSE command
+		;
+		
 	
 %%
 yyerror(char const *s)
