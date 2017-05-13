@@ -10,7 +10,7 @@ int number_row = 0;
 %token POWER
 %token ADD SUB
 %token MUL DIV
-%token MOD /* a % b*/
+%token MOD 
 %token XOR
 %token OR
 
@@ -58,32 +58,38 @@ int number_row = 0;
 %%
 
 start: 
-	|comm_decl_list
+	|command_declaration_list
 	;
 	
-comm_decl_list:
-	comm_decl
-	| comm_decl comm_decl_list
+command_declaration_list:
+	command_declaration
+	| command_declaration command_declaration_list
 	;
 	
-comm_decl: comm_decl
-	|func_decl
+command_declaration: command_declaration
+	|function_declaration
 	;
 	
-func_decl: FUNCTION '(' arg_decl ')' body
+function_declaration: FUNCTION '(' argument_declaration ')' body
 	;
 
-arg_decl:  
-	| arg_decl_1 
+argument_declaration:  
+	| first_argument_declaration 
 	;
 
-arg_decl_1: identifier 
-       | identifier ',' arg_decl_1
+first_argument_declaration: identifier 
+       | identifier ',' first_argument_declaration
 	   ;
 
-body: '{' comm_list '}' 
+body: '{' command_list '}' 
 	| '{' '}' 
 	;
+	
+command_list: command
+	| command command_list
+	;
+	
+	
 %%
 yyerror(char const *s)
 {
