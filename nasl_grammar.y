@@ -25,10 +25,8 @@ int number_row = 0;
 %token CONTINUE
 %token RETURN
 %token INCLUDE
-$token STR_FIRST
-
+%token STR_FIRST
 %token FUNCTION
-
 %token ASSIGN
 %token RIGHT_ASSIGN
 %token RIGHT_RIGHT_ASSIGN
@@ -157,13 +155,9 @@ aff_func:
 		| post_pre_command 
 		| function_call 
 		;			
-	
-string1: 
-		STRING1
-		;
 		
 inc: 
-	INCLUDE LEFT_PARENTHESIS string1 RIGHT_PARENTHESIS
+	INCLUDE LEFT_PARENTHESIS STR_FIRST RIGHT_PARENTHESIS
 	;
 	
 function_call: 
@@ -267,12 +261,14 @@ list_array_data:
 
 array_data: 
 			simple_array_data 
-			| string ARROW simple_array_data 
+			| STR_FIRST ARROW simple_array_data 
 			;
+			
+		
 			
 atom: 
 	INTEGER 
-    | STRING1
+    | STR_FIRST
 	; 
 
 simple_array_data: 
@@ -294,11 +290,11 @@ ipaddr:
 		;
 
 loc: 
-	LOCAL arg_decl
+	LOCAL argument_decl
 	;
 
 glob: 
-	GLOBAL arg_decl
+	GLOBAL argument_decl
 	;		
 			
 	

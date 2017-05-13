@@ -58,7 +58,7 @@ void count();
 "->" { count(); return(ARROW); }
 
 [0-9]+("."?[0-9]+)? { count(); return(INTEGER); }
-[\w\s]* { count(); return(STR_FIRST); }
+\"([^\\"\r\n]|(\\.))*\" { count(); return(STR_FIRST); }
 
 "><" { count(); return(SEARCH_SUBSTR); }
 ">|<" { count(); return(NOT_SEARCH_SUBSTR); }
@@ -76,7 +76,7 @@ void count();
 "|" { count(); return(OR); }
 "?" { count(); return('?'); }
 
-
+"include" { count(); return(INCLUDE); }
 [ \t\v\n\f] { count(); }
 . { /* ignore bad characters */ }
 
