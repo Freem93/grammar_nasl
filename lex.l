@@ -49,8 +49,13 @@ void count();
 "[" { count(); return(LEFT_SQ_BRACKET); }
 "]" { count(); return(RIGHT_SQ_BRACKET); }
 "." { count(); return(POINT); }
-"&" { count(); return('&'); }
+"&" { count(); return(AND); }
 "!" { count(); return(NOT); }
+
+"=~" { count(); return(ASSIGN_BIT); }
+"!~" { count(); return(NOT_BIT); }
+"~" { count(); return(BIT); }
+
 
 "><" { count(); return(SEARCH_SUBSTR); }
 ">|<" { count(); return(NOT_SEARCH_SUBSTR); }

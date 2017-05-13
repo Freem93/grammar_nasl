@@ -110,7 +110,7 @@ command:
 		
 simple_command : 
 				| aff 
-				| post_pre_incr 
+				| post_pre_command 
 				| function_call 
 				| ret 
 				| inc
@@ -155,7 +155,7 @@ foreach_loop:
 
 aff_func: 
 		| aff 
-		| post_pre_incr 
+		| post_pre_command 
 		| function_call 
 		;			
 	
@@ -195,6 +195,67 @@ aff:
 	| lvalue RIGHT_RIGHT_ASSIGN expression
 	| lvalue LEFT_ASSIGN expression
 	;
+	
+lvalue: 
+		identifier 
+		| array_elem 
+		;
+		
+identifier: 
+			IDENTIFIER
+			;
+
+array_elem: 
+			identifier '[' array_index ']'
+			;
+
+array_index: 
+			expression
+			;
+
+post_pre_command:
+				INC_OP lvalue 
+				| DEC_OP lvalue
+				| lvalue INC_OP 
+				| lvalue DEC_OP 
+				;
+				
+expression:
+			'(' expression ')'
+			| expression AND_OP expression
+			| NOT expression 
+			| expression OR_OP expression
+			| expression ADD expression
+			| expression SUB expression
+			| '-' expression 
+			| BIT expression
+			| expression DIV expression 
+			| expression MOD expression 
+			| expression AND expression 
+			| expression XOR expression
+			| expression OR expression 
+			| expression RIGHT_OP expression 
+			| expression RIGHT_OP_3 expression 
+			| expression LEFT_OP expression
+			| post_pre_command
+			| expression MUL expression
+			| expression POWER expression 
+			| expression NE expression 
+			| expression EQ expression
+			| expression LT expression
+			| expression GT expression 
+			| expression LE expression 
+			| expression GE expression
+			| expression ASSIGN_BIT expression 
+			| expression NOT_BIT expression
+			| expression SEARCH_SUBSTR expression 
+			| expression NOT_SEARCH_SUBSTR expression
+			| var 	
+			| aff 
+			| ipaddr 
+			| atom 
+			| const_array 
+			;
 	
 %%
 yyerror(char const *s)
