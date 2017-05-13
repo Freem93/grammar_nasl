@@ -21,6 +21,13 @@ int number_row = 0;
 %token WHILE
 %token REPEAT
 %token UNTIL
+%token BREAK
+%token CONTINUE
+%token RETURN
+%token INCLUDE
+$token STRING1
+
+%token FUNCTION
 
 %token ASSIGN
 %token RIGHT_ASSIGN
@@ -104,10 +111,9 @@ command:
 simple_command : 
 				| aff 
 				| post_pre_incr 
-				| rep
-				| func_call 
+				| function_call 
 				| ret 
-				| inc 
+				| inc
 				| loc 
 				| glob
 				| BREAK 
@@ -123,7 +129,72 @@ if_body:
 		IF '(' expression ')' command
 		| IF '(' expression ')' command ELSE command
 		;
+	
+loop: 
+	for_loop 
+	| while_loop 
+	| repeat_loop 
+	| foreach_loop 
+	;
+
+for_loop: 
+		FOR '(' aff_func ';' expression ';' aff_func ')' command
+		;
+
+while_loop: 
+			WHILE '(' expression ')' command
+			;
+
+repeat_loop: 
+			REPEAT command UNTIL expression ';'
+			;
+
+foreach_loop: 
+			FOREACH identifier '(' expression ')'  command
+			;
+
+aff_func: 
+		| aff 
+		| post_pre_incr 
+		| function_call 
+		;			
+	
+string1: 
+		STRING1
+		;
 		
+inc: 
+	INCLUDE '(' string1 ')'
+	;
+	
+function_call: 
+			identifier '(' argument_list ')'
+			;
+	
+argument_list : 
+				| first_argument_list | 
+				;
+first_argument_list: 
+					argument 
+					| argument ',' first_argument_list
+					;
+
+argument: 
+		expression
+		| identifier ':' expression
+		;
+		
+aff:    
+	lvalue '=' expression
+	| lvalue ADD_ASSIGN expression
+    | lvalue SUB_ASSIGN expression
+	| lvalue MUL_ASSIGN expression
+	| lvalue DIV_ASSIGN expression  
+	| lvalue MOD_ASSIGN expression
+	| lvalue RIGHT_ASSIGN expression
+	| lvalue RIGHT_RIGHT_ASSIGN expression
+	| lvalue LEFT_ASSIGN expression
+	;
 	
 %%
 yyerror(char const *s)
