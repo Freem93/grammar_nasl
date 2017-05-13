@@ -68,6 +68,7 @@
 #define	IDENTIFIER	322
 #define	LOCAL	323
 #define	GLOBAL	324
+#define	COMMENT	325
 
 
 extern YYSTYPE yylval;

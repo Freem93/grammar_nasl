@@ -71,7 +71,7 @@ extern int yylineno;
 %token IDENTIFIER
 %token LOCAL
 %token GLOBAL
-
+%token COMMENT
 
 
 %start start
@@ -119,6 +119,7 @@ command:
 		| body 
 		| if_body 
 		| loop 
+		| COMMENT
 		;
 		
 simple_command : 
@@ -236,7 +237,6 @@ expression:
 			| expression OR_OP expression
 			| expression ADD expression
 			| expression SUB expression
-			| '-' expression 
 			| BIT expression
 			| expression DIV expression 
 			| expression MOD expression 
@@ -315,6 +315,12 @@ glob:
 			
 	
 %%
+
+
+#include <stdio.h>
+extern char yytext[];
+extern int column;
+
 yyerror(char const *s)
 {
 	
@@ -323,12 +329,10 @@ yyerror(char const *s)
 
 	fprintf(stderr, "%s", s);
 }
-extern char yytext[];
-extern int column;
 
 lex()
 {
-;
+	printf("\n%s\n", stdin);
 }
 
 int main()
