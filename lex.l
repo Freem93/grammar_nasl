@@ -16,7 +16,7 @@ void count();
 %option yylineno
 
 %%
-[#].*\n { /* оммент-рабочий*/ }
+[#].* { }
 ">>=" { count(); return(RIGHT_ASSIGN); }
 ">>>=" { count(); return(RIGHT_RIGHT_ASSIGN); }
 "<<=" { count(); return(LEFT_ASSIGN); }
@@ -57,8 +57,8 @@ void count();
 "~" { count(); return(BIT); }
 "->" { count(); return(ARROW); }
 
-/*регул€рка - надо подумать*/ { count(); return(INTEGER); }
-/*регул€рка - надо подумать*/ { count(); return(STRING); }
+[0-9]+("."?[0-9]+)? { count(); return(INTEGER); }
+[\w\s]* { count(); return(STR_FIRST); }
 
 "><" { count(); return(SEARCH_SUBSTR); }
 ">|<" { count(); return(NOT_SEARCH_SUBSTR); }

@@ -25,7 +25,7 @@ int number_row = 0;
 %token CONTINUE
 %token RETURN
 %token INCLUDE
-$token STRING1
+$token STR_FIRST
 
 %token FUNCTION
 
@@ -58,7 +58,6 @@ $token STRING1
 %token RIGHT_PARENTHESIS
 %token LEFT_SQ_BRACKET
 %token RIGHT_SQ_BRACKET
-%token POINT
 %token NOT
 
 %start start
@@ -79,7 +78,7 @@ command_declaration:
 					;
 	
 function_declaration: 
-					FUNCTION '(' argument_declaration ')' body
+					FUNCTION LEFT_PARENTHESIS argument_declaration RIGHT_PARENTHESIS body
 					;
 
 argument_declaration:  
@@ -92,8 +91,8 @@ first_argument_declaration:
 							;
 
 body: 
-	'{' command_list '}' 
-	| '{' '}' 
+	LEFT_BRACE command_list RIGHT_BRACE 
+	| LEFT_BRACE RIGHT_BRACE 
 	;
 	
 command_list: 
@@ -126,8 +125,8 @@ ret:
 	;
 	
 if_body: 
-		IF '(' expression ')' command
-		| IF '(' expression ')' command ELSE command
+		IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command
+		| IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command ELSE command
 		;
 	
 loop: 
@@ -138,11 +137,11 @@ loop:
 	;
 
 for_loop: 
-		FOR '(' aff_func ';' expression ';' aff_func ')' command
+		FOR LEFT_PARENTHESIS aff_func ';' expression ';' aff_func RIGHT_PARENTHESIS command
 		;
 
 while_loop: 
-			WHILE '(' expression ')' command
+			WHILE LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command
 			;
 
 repeat_loop: 
@@ -150,7 +149,7 @@ repeat_loop:
 			;
 
 foreach_loop: 
-			FOREACH identifier '(' expression ')'  command
+			FOREACH identifier LEFT_PARENTHESIS expression RIGHT_PARENTHESIS  command
 			;
 
 aff_func: 
@@ -164,11 +163,11 @@ string1:
 		;
 		
 inc: 
-	INCLUDE '(' string1 ')'
+	INCLUDE LEFT_PARENTHESIS string1 RIGHT_PARENTHESIS
 	;
 	
 function_call: 
-			identifier '(' argument_list ')'
+			identifier LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS
 			;
 	
 argument_list : 
@@ -221,7 +220,7 @@ post_pre_command:
 				;
 				
 expression:
-			'(' expression ')'
+			LEFT_PARENTHESIS expression RIGHT_PARENTHESIS
 			| expression AND_OP expression
 			| NOT expression 
 			| expression OR_OP expression
