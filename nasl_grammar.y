@@ -12,7 +12,7 @@ int number_row = 0;
 %token MUL DIV
 %token MOD 
 %token XOR
-%token OR
+%token OR OR_OP
 
 %token IF
 %token ELSE
@@ -45,7 +45,7 @@ int number_row = 0;
 %token INC_OP
 %token DEC_OP
 %token AND_OP
-%token AND_OP
+%token AND
 
 %token SEMICOLON
 %token LEFT_BRACE
@@ -57,6 +57,17 @@ int number_row = 0;
 %token LEFT_SQ_BRACKET
 %token RIGHT_SQ_BRACKET
 %token NOT
+
+%token BIT
+%token NOT_BIT
+%token ARROW
+%token ASSIGN_BIT
+
+%token INTEGER
+
+%token IDENTIFIER
+%token LOCAL
+%token GLOBAL
 
 %start start
 %%
