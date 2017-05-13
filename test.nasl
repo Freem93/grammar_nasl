@@ -2,7 +2,8 @@
 # KillerApp check
 #
 
-if (description)
+
+if(description)
 {
 	script_id(50000);
 	script_name(english:"Check for KillerApp");

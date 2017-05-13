@@ -9,11 +9,13 @@ IS (u|U|l|L)*
 #include <stdio.h>
 #include "y_tab.h"
 void count();
+
 %}
 
 %option outfile="lex.yy.c"
 %option noyywrap
 %option yylineno
+
 
 %%
 [#].* { }
@@ -33,7 +35,7 @@ void count();
 "<<" { count(); return(LEFT_OP); }
 "++" { count(); return(INC_OP); }
 "--" { count(); return(DEC_OP); }
-"->" { count(); return(PTR_OP); }
+
 "&&" { count(); return(AND_OP); }
 "||" { count(); return(OR_OP); }
 "==" { count(); return(EQ); }
@@ -48,7 +50,6 @@ void count();
 ")" { count(); return(RIGHT_PARENTHESIS); }
 "[" { count(); return(LEFT_SQ_BRACKET); }
 "]" { count(); return(RIGHT_SQ_BRACKET); }
-"." { count(); return(POINT); }
 "&" { count(); return(AND); }
 "!" { count(); return(NOT); }
 
@@ -57,7 +58,7 @@ void count();
 "~" { count(); return(BIT); }
 "->" { count(); return(ARROW); }
 
-[0-9]+("."?[0-9]+)? { count(); return(INTEGER); }
+[0-9]+ { count(); return(INTEGER); }
 \"([^\\"\r\n]|(\\.))*\" { count(); return(STR_FIRST); }
 
 "><" { count(); return(SEARCH_SUBSTR); }

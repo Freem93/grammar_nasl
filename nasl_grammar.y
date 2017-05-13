@@ -1,7 +1,10 @@
 
 %{
 
-int number_row = 0;
+#define YYERROR_VERBOSE 1
+#define YYDEBUG 1
+#define YYPRINT(file, type, value) fprintf(file, "%d", value);
+extern int yylineno;
 %}
 
 %token EQ NE LT GT LE GE
@@ -69,6 +72,8 @@ int number_row = 0;
 %token LOCAL
 %token GLOBAL
 
+
+
 %start start
 %%
 
@@ -82,7 +87,7 @@ command_declaration_list:
 						;
 	
 command_declaration: 
-					command_declaration
+					command
 					|function_declaration
 					;
 	
@@ -289,7 +294,7 @@ simple_array_data:
 var: 
 	var_name 
 	| array_elem 
-	| func_call
+	| function_call
 	;
 
 var_name: 
@@ -301,18 +306,29 @@ ipaddr:
 		;
 
 loc: 
-	LOCAL argument_decl
+	LOCAL argument_declaration
 	;
 
 glob: 
-	GLOBAL argument_decl
+	GLOBAL argument_declaration
 	;		
 			
 	
 %%
 yyerror(char const *s)
 {
+	
+	printf("\n%d\n", yylineno);
+	fflush(stdout);
+
 	fprintf(stderr, "%s", s);
+}
+extern char yytext[];
+extern int column;
+
+lex()
+{
+;
 }
 
 int main()
