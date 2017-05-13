@@ -4,6 +4,7 @@
 
 %}
 
+%token DIGIT
 %%
 
 
