@@ -54,11 +54,36 @@ int number_row = 0;
 %token POINT
 %token NOT
 
-%start line
+%start start
 %%
 
-line:
-     ;
+start: 
+	|comm_decl_list
+	;
+	
+comm_decl_list:
+	comm_decl
+	| comm_decl comm_decl_list
+	;
+	
+comm_decl: comm_decl
+	|func_decl
+	;
+	
+func_decl: FUNCTION '(' arg_decl ')' body
+	;
+
+arg_decl:  
+	| arg_decl_1 
+	;
+
+arg_decl_1: identifier 
+       | identifier ',' arg_decl_1
+	   ;
+
+body: '{' comm_list '}' 
+	| '{' '}' 
+	;
 %%
 yyerror(char const *s)
 {
