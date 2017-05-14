@@ -78,6 +78,19 @@ void count();
 "?" { count(); return('?'); }
 
 "include" { count(); return(INCLUDE); }
+"return" { count(); return(RETURN); }
+"break" { count(); return(BREAK); }
+"if" { count(); return(IF); }
+"else" { count(); return (ELSE); }
+"continue" { count(); return(CONTINUE); }
+"for" { count(); return(FOR); }
+"foreach" { count(); return(FOREACH); }
+"while" { count(); return(WHILE); }
+"repeat" { count(); return(REPEAT); }
+"until" { count(); return(UNTIL); }
+
+
+
 [ \t\v\n\f] { count(); }
 . { /* ignore bad characters */ }
 
