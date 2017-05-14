@@ -26,7 +26,7 @@ if (foo());
 if (FALSE);
 if (TRUE);
 if (NULL);
-#if ('');
+if ('');
 if ('foo');
 if ("");
 if ("foo");

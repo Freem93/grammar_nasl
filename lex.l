@@ -1,4 +1,4 @@
-
+H    [a-fA-F0-9]
 %{
 #include <stdio.h>
 #include "y_tab.h"
@@ -55,8 +55,8 @@ void count();
 "!~" { count(); return(NOT_BIT); }
 "~" { count(); return(BIT); }
 "->" { count(); return(ARROW); }
-\"([^\\"\r\n]|(\\.))*\" { count(); return(STR_FIRST); }
-[-]?[0-9]+ { count(); return(INTEGER); }
+[\"\']([^\\"\r\n]|(\\.))*[\'\"] { count(); return(STR_FIRST); }
+([-]?[0-9]+|0[xX]{H}+) { count(); return(INTEGER); }
 
 "else" { count(); return (ELSE); }
 

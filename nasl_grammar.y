@@ -106,9 +106,26 @@ first_argument_declaration:
 
 body: 
 	LEFT_BRACE command_list RIGHT_BRACE 
-	| LEFT_BRACE RIGHT_BRACE 
+	| LEFT_BRACE RIGHT_BRACE  
 	| command ELSE 
 	;
+
+body_arg:
+		LEFT_BRACE first_argument_list_brace RIGHT_BRACE 
+		;
+
+first_argument_list_brace: 
+						| argument_brace
+						| first_argument_list_brace COMMA argument_brace
+						;
+
+argument_brace: 
+				brace_ident COLON brace_ident   
+				;	
+
+brace_ident: INTEGER
+			| STR_FIRST
+
 	
 command_list: 
 			command 
@@ -214,8 +231,7 @@ lvalue:
 		;
 		
 identifier: 
-			IF_1
-			| IDENTIFIER 
+			IDENTIFIER 
 			;
 
 array_elem: 
@@ -266,7 +282,7 @@ expression: LEFT_PARENTHESIS expression RIGHT_PARENTHESIS
 			| ipaddr 
 			| atom 
 			| const_array 
-			| body
+			| body_arg
 			;
 			
 const_array:    
