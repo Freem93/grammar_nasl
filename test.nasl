@@ -2,6 +2,23 @@
 # KillerApp check
 #
 
+for(i = 1; i < 10; i++)
+{
+	display(i, "\n");
+}
+
+j = 1;
+
+while( j <= 10)
+{
+	display(j, "\n");
+	j++;
+}
+
+x = 0;
+repeat {
+	display(++x, "\n");
+} until ( x >= 10);
 
 if(description)
 {
