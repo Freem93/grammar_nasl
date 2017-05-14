@@ -77,7 +77,7 @@ extern int yylineno;
 %%
 
 start: 
-	|command_declaration_list
+	|command_declaration_list 
 	;
 	
 command_declaration_list:
@@ -86,8 +86,8 @@ command_declaration_list:
 						;
 	
 command_declaration: 
-					command
-					|function_declaration
+					command {printf("_____command");}
+					|function_declaration  {printf("_____func_decl");}
 					;
 	
 function_declaration: 
@@ -109,22 +109,20 @@ body:
 	;
 	
 command_list: 
-			command
-			| command_list command 
+			command {printf("_____com_list");}
+			| command_list command {printf("_____com_com");}
 			;
 	
 command: 
-		simple_command SEMICOLON 
-		| body 
-		| if_body 
-		| loop 
+		simple_command {printf("_____simple");}
+		| body   
 		| COMMENT
 		;
 		
-simple_command : 
+simple_command: 
 				| aff 
 				| post_pre_command 
-				| function_call 
+				| function_call {printf("_____if");}
 				| ret 
 				| inc
 				| loc 
@@ -139,7 +137,7 @@ ret:
 	;
 	
 if_body: 
-		IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command
+		IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command {printf("_____if");}
 		| IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command ELSE command
 		;
 	
@@ -177,7 +175,10 @@ inc:
 	;
 	
 function_call: 
-			identifier LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS
+			identifier LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS SEMICOLON 
+			| identifier LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS
+			| if_body
+			| loop
 			;
 	
 argument_list : 
@@ -194,7 +195,7 @@ argument:
 		;
 		
 aff:    
-	lvalue '=' expression
+	lvalue ASSIGN expression
 	| lvalue ADD_ASSIGN expression
     | lvalue SUB_ASSIGN expression
 	| lvalue MUL_ASSIGN expression
@@ -276,7 +277,7 @@ list_array_data:
 
 array_data: 
 			simple_array_data 
-			| STR_FIRST ARROW simple_array_data 
+			| identifier ARROW simple_array_data 
 			;
 			
 		
