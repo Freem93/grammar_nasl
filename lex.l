@@ -12,7 +12,7 @@ void count();
 
 
 %%
-[#].*\n { count(); return(COMMENT); }
+[#].* { count(); return(COMMENT); }
 "function" { count(); return(FUNCTION); }
 "local_var" { count(); return(LOCAL); }
 "global_var" { count(); return(GLOBAL); }
