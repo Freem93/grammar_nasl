@@ -1961,18 +1961,31 @@ int main()
 
 
 
-
+int flag = 0;
 int column = 0;
 void count()
 {
 	int i;
+	int j;
+	if(flag == 0)
+	{
+		printf("%d||	", yylineno);
+		flag = 1;
+	}		
+	ECHO;
 	for (i = 0; yytext[i] != '\0'; i++)
-		if (yytext[i] == '\n')
-			column = i;
+		if (yytext[i] == '\n'){
+			column = 0;
+			
+			printf("%d||	", yylineno);
+			
+		}
+			
 		else if (yytext[i] == '\t')
 			column += 8 - (column % 8);
 		else
 			column++;
+			
 	
-	ECHO;
+	
 }

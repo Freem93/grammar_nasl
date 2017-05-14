@@ -124,7 +124,7 @@ command:
 simple_command: SEMICOLON
 				| aff SEMICOLON 
 				| post_pre_command SEMICOLON
-				| function_call 
+				| function_call
 				| ret SEMICOLON
 				| inc SEMICOLON
 				| loc SEMICOLON
@@ -179,7 +179,7 @@ inc:
 function_call:
 			if_body  	
 			| loop
-			| IDENTIFIER LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS 
+			| IDENTIFIER LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS
 			;
 	
 argument_list : 
