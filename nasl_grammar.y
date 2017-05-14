@@ -92,7 +92,7 @@ command_declaration:
 					;
 	
 function_declaration: 
-					FUNCTION LEFT_PARENTHESIS argument_declaration RIGHT_PARENTHESIS body
+					FUNCTION IDENTIFIER LEFT_PARENTHESIS argument_declaration RIGHT_PARENTHESIS body
 					;
 
 argument_declaration:  
