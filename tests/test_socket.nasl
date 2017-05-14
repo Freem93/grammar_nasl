@@ -29,13 +29,9 @@
 # ../openvas-nasl -X -t greenbone.net test_socket.nasl
 #
 
-if(def)
-testcase_ok();
-
-else{
-x=y;
+if (!defined_func("testcase_start")) {
+  include("testsuiteinit.nasl");
 }
-
 
 target_port = 443;
 

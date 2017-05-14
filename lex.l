@@ -1,9 +1,3 @@
-D [0-9]
-L [a-zA-Z_]
-H [a-fA-F0-9]
-E [Ee][+-]?{D}+
-FS (f|F|l|L)
-IS (u|U|l|L)*
 
 %{
 #include <stdio.h>
@@ -61,7 +55,7 @@ void count();
 "~" { count(); return(BIT); }
 "->" { count(); return(ARROW); }
 \"([^\\"\r\n]|(\\.))*\" { count(); return(STR_FIRST); }
-[0-9]+ { count(); return(INTEGER); }
+[-]?[0-9]+ { count(); return(INTEGER); }
 
 "else" { count(); return (ELSE); }
 

@@ -80,7 +80,6 @@
 
 #define YYERROR_VERBOSE 1
 #define YYDEBUG 1
-#define YYPRINT(file, type, value) fprintf(file, "%d", value);
 extern int yylineno;
 
 #ifndef YYLTYPE
@@ -1221,10 +1220,11 @@ extern int column;
 yyerror(char const *s)
 {
 	
-	printf("\n%d\n", yylineno);
+	//printf("\n%d\n", yylineno);
 	fflush(stdout);
-	fprintf(stderr, "%s", s);
+	printf("\n%*s\n%*s\n", column, "^", column, s);
 }
+
 lex()
 {
 	printf("\n%s\n", stdin);
