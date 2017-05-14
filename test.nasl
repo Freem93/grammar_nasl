@@ -16,6 +16,37 @@ while(true)
 	j += 1;
 }
 
+#if tests
+
+if (-1);
+if (0);
+if (1);
+if (q = 1);
+if (foo());
+if (FALSE);
+if (TRUE);
+if (NULL);
+#if ('');
+if ('foo');
+if ("");
+if ("foo");
+if (1) {}
+if (1) if (1) foo();
+if (1) if (1) {foo();}
+if (1) if (1) foo(); else bar();
+if (foo) {};
+
+#tests array
+
+foo = {};
+foo = {1:02, 3:4, 5:0x6};
+foo = {'a':"b", "c":'d'};
+foo = {'a':1, 2:"b"};
+foo = {'a':1, 2:"b",}; #must be fail?
+foo = {'a':1, 2:"b",,}; #must be fail
+return {,}; #must be fail
+return {a:@foo, b:"hello", c:3};
+
 x = 0;
 repeat {
 	display(++x, "\n");
