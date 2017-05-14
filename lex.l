@@ -60,9 +60,21 @@ void count();
 
 [0-9]+ { count(); return(INTEGER); }
 \"([^\\"\r\n]|(\\.))*\" { count(); return(STR_FIRST); }
+"else" { count(); return (ELSE); }
+"if" { count(); return(IF); }
+"include" { count(); return(INCLUDE); }
+"return" { count(); return(RETURN); }
+"break" { count(); return(BREAK); }
 
+
+"continue" { count(); return(CONTINUE); }
+"for" { count(); return(FOR); }
+"foreach" { count(); return(FOREACH); }
+"while" { count(); return(WHILE); }
+"repeat" { count(); return(REPEAT); }
+"until" { count(); return(UNTIL); }
 [a-zA-Z_0-9]+ { count(); return(IDENTIFIER); }
-[i]+[f]+ { count(); return(IF_1); }
+
 
 "><" { count(); return(SEARCH_SUBSTR); }
 ">|<" { count(); return(NOT_SEARCH_SUBSTR); }
@@ -80,17 +92,7 @@ void count();
 "|" { count(); return(OR); }
 "?" { count(); return('?'); }
 
-"include" { count(); return(INCLUDE); }
-"return" { count(); return(RETURN); }
-"break" { count(); return(BREAK); }
-[i][f] { count(); return(IF); }
-"else" { count(); return (ELSE); }
-"continue" { count(); return(CONTINUE); }
-"for" { count(); return(FOR); }
-"foreach" { count(); return(FOREACH); }
-"while" { count(); return(WHILE); }
-"repeat" { count(); return(REPEAT); }
-"until" { count(); return(UNTIL); }
+
 
 
 

@@ -118,7 +118,6 @@ command:
 		simple_command {printf("_____simple");}
 		| body 
 		| loop 
-		| if_body
 		| COMMENT
 		;
 		
@@ -141,7 +140,7 @@ ret:
 	
 if_body: 
 		IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command {printf("_____if");}
-		| IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command ELSE command
+		| IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command ELSE command {printf("_____ifelse");}
 		;
 	
 loop: 
@@ -177,9 +176,10 @@ inc:
 	INCLUDE LEFT_PARENTHESIS STR_FIRST RIGHT_PARENTHESIS
 	;
 	
-function_call: 
-			 IF_1 LEFT_PARENTHESIS expression RIGHT_PARENTHESIS {printf("_____if");}
-			 | IDENTIFIER LEFT_PARENTHESIS expression RIGHT_PARENTHESIS {printf("_____call");}
+function_call:
+			if_body  {printf("_____if");}	
+			| loop
+			| IDENTIFIER LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS 
 			;
 body_end:
 		;
@@ -215,7 +215,8 @@ lvalue:
 		;
 		
 identifier: 
-			IDENTIFIER
+			IF_1
+			| IDENTIFIER 
 			;
 
 array_elem: 
