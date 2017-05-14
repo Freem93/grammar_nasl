@@ -57,9 +57,9 @@ void count();
 "!~" { count(); return(NOT_BIT); }
 "~" { count(); return(BIT); }
 "->" { count(); return(ARROW); }
-
-[0-9]+ { count(); return(INTEGER); }
 \"([^\\"\r\n]|(\\.))*\" { count(); return(STR_FIRST); }
+[0-9]+ { count(); return(INTEGER); }
+
 "else" { count(); return (ELSE); }
 "if" { count(); return(IF); }
 "include" { count(); return(INCLUDE); }

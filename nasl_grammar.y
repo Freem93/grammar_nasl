@@ -110,14 +110,13 @@ body:
 	;
 	
 command_list: 
-			command {printf("_____com_list");}
-			| command_list command {printf("_____com_com");}
+			command 
+			| command_list command 
 			;
 	
 command: 
-		simple_command {printf("_____simple");}
+		simple_command 
 		| body 
-		| loop 
 		| COMMENT
 		;
 		
@@ -139,8 +138,8 @@ ret:
 	;
 	
 if_body: 
-		IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command {printf("_____if");}
-		| IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command ELSE command {printf("_____ifelse");}
+		IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command 
+		| IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command ELSE command 
 		;
 	
 loop: 
@@ -177,12 +176,10 @@ inc:
 	;
 	
 function_call:
-			if_body  {printf("_____if");}	
+			if_body  	
 			| loop
 			| IDENTIFIER LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS 
 			;
-body_end:
-		;
 	
 argument_list : 
 				| first_argument_list 
@@ -194,7 +191,7 @@ first_argument_list:
 
 argument: 
 		expression
-		| identifier ':' expression
+		| identifier COLON expression   
 		;
 		
 aff:    
@@ -287,8 +284,9 @@ array_data:
 		
 			
 atom: 
-	INTEGER 
-    | STR_FIRST
+	STR_FIRST
+	|INTEGER 
+    
 	; 
 
 simple_array_data: 
