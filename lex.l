@@ -12,6 +12,7 @@ void count();
 
 
 %%
+
 [#].* { count(); return(COMMENT); }
 "function" { count(); return(FUNCTION); }
 "local_var" { count(); return(LOCAL); }
@@ -108,10 +109,11 @@ void count()
 	int i;
 	for (i = 0; yytext[i] != '\0'; i++)
 		if (yytext[i] == '\n')
-			column = 0;
+			column = i;
 		else if (yytext[i] == '\t')
 			column += 8 - (column % 8);
 		else
-		column++;
+			column++;
+	
 	ECHO;
 }

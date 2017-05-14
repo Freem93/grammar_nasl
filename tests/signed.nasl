@@ -38,7 +38,7 @@ function display_authentication_status()
   #  3. Doesn't have side effects.
 
   s = file_stat("/");
-
+	for(i=0;i<5;i++){}
   if (s != NULL)
     {
       display("YES\n");

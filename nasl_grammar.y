@@ -122,8 +122,8 @@ command:
 		;
 		
 simple_command: SEMICOLON
-				| aff SEMICOLON
-				| post_pre_command
+				| aff SEMICOLON 
+				| post_pre_command SEMICOLON
 				| function_call 
 				| ret SEMICOLON
 				| inc SEMICOLON
