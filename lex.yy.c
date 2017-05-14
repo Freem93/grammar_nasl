@@ -1976,7 +1976,6 @@ void count()
 	for (i = 0; yytext[i] != '\0'; i++)
 		if (yytext[i] == '\n'){
 			column = 0;
-			
 			printf("%d||	", yylineno);
 			
 		}

@@ -266,6 +266,7 @@ expression: LEFT_PARENTHESIS expression RIGHT_PARENTHESIS
 			| ipaddr 
 			| atom 
 			| const_array 
+			| body
 			;
 			
 const_array:    

@@ -47,6 +47,7 @@ function display_authentication_status()
     {
       display("NO\n")
     }
-}
 
+}
+foo = {};
 display_authentication_status();
