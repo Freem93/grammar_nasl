@@ -42,10 +42,10 @@ foo = {};
 foo = {1:02, 3:4, 5:0x6};
 foo = {'a':"b", "c":'d'};
 foo = {'a':1, 2:"b"};
-foo = {'a':1, 2:"b",}; #must be fail?
-foo = {'a':1, 2:"b",,}; #must be fail
-return {,}; #must be fail
-return {a:@foo, b:"hello", c:3};
+#foo = {'a':1, 2:"b",}; #must be fail?
+#foo = {'a':1, 2:"b",,}; #must be fail
+#return {,}; #must be fail
+return {a:@foo, b:"h", c:3};
 
 #assigment tests
 

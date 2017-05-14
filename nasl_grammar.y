@@ -112,7 +112,12 @@ body:
 
 body_arg:
 		LEFT_BRACE first_argument_list_brace RIGHT_BRACE 
+		| LEFT_SQ_BRACKET first_argument_list_bracket RIGHT_SQ_BRACKET
 		;
+first_argument_list_bracket: 
+						| argument_bracket
+						| first_argument_list_bracket COMMA argument_bracket
+						;
 
 first_argument_list_brace: 
 						| argument_brace
@@ -120,12 +125,18 @@ first_argument_list_brace:
 						;
 
 argument_brace: 
-				brace_ident COLON brace_ident   
-				;	
+				brace_ident COLON brace_ident 
+				| brace_ident COLON function_call 
+				;
+argument_bracket: 
+				 LEFT_SQ_BRACKET RIGHT_SQ_BRACKET   
+				 | function_call
+				;					
 
 brace_ident: INTEGER
 			| STR_FIRST
-
+			| identifier
+			;
 	
 command_list: 
 			command 
