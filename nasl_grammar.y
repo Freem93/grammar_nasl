@@ -68,7 +68,7 @@ extern int yylineno;
 %token INTEGER
 %token IF_1
 %token IDENTIFIER
-
+%token POINT
 %token LOCAL
 %token GLOBAL
 %token COMMENT
@@ -78,7 +78,7 @@ extern int yylineno;
 %%
 
 start: 
-	|command_declaration_list  {printf("_____simple");}
+	|command_declaration_list 
 	;
 	
 command_declaration_list:
@@ -87,8 +87,8 @@ command_declaration_list:
 						;
 	
 command_declaration: 
-					command {printf("_____command");}
-					|function_declaration  {printf("_____func_decl");}
+					command 
+					|function_declaration  
 					;
 	
 function_declaration: 
@@ -150,7 +150,7 @@ loop:
 	;
 
 for_loop: 
-		FOR LEFT_PARENTHESIS aff_func ';' expression ';' aff_func RIGHT_PARENTHESIS command
+		FOR LEFT_PARENTHESIS aff_func SEMICOLON expression SEMICOLON aff_func RIGHT_PARENTHESIS command
 		;
 
 while_loop: 
@@ -158,7 +158,7 @@ while_loop:
 			;
 
 repeat_loop: 
-			REPEAT command UNTIL expression ';'
+			REPEAT command UNTIL expression SEMICOLON
 			;
 
 foreach_loop: 
@@ -186,7 +186,7 @@ argument_list :
 				;
 first_argument_list: 
 					argument 
-					| first_argument_list ',' argument
+					| first_argument_list COMMA argument
 					;
 
 argument: 
@@ -217,7 +217,7 @@ identifier:
 			;
 
 array_elem: 
-			identifier '[' array_index ']'
+			identifier LEFT_SQ_BRACKET array_index RIGHT_SQ_BRACKET
 			;
 
 array_index: 
@@ -268,12 +268,12 @@ expression:
 			;
 			
 const_array:    
-			'[' list_array_data ']' 
+			LEFT_SQ_BRACKET list_array_data RIGHT_SQ_BRACKET 
 			;
 
 list_array_data: 
 				array_data 
-				| array_data ',' list_array_data
+				| array_data COMMA list_array_data
 				;
 
 array_data: 
@@ -304,7 +304,7 @@ var_name:
 		;
 		
 ipaddr: 
-		INTEGER '.' INTEGER '.' INTEGER '.' INTEGER
+		INTEGER POINT INTEGER POINT INTEGER POINT INTEGER
 		;
 
 loc: 

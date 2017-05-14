@@ -91,6 +91,7 @@ void count();
 "^" { count(); return(XOR); }
 "|" { count(); return(OR); }
 "?" { count(); return('?'); }
+"." { count(); return(POINT); }
 
 
 

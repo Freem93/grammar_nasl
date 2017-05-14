@@ -67,9 +67,10 @@
 #define	INTEGER	321
 #define	IF_1	322
 #define	IDENTIFIER	323
-#define	LOCAL	324
-#define	GLOBAL	325
-#define	COMMENT	326
+#define	POINT	324
+#define	LOCAL	325
+#define	GLOBAL	326
+#define	COMMENT	327
 
 
 extern YYSTYPE yylval;
