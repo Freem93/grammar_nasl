@@ -60,6 +60,7 @@ void count();
 
 [0-9]+ { count(); return(INTEGER); }
 \"([^\\"\r\n]|(\\.))*\" { count(); return(STR_FIRST); }
+[a-zA-Z_0-9]+ { count(); return(IDENTIFIER); }
 
 "><" { count(); return(SEARCH_SUBSTR); }
 ">|<" { count(); return(NOT_SEARCH_SUBSTR); }

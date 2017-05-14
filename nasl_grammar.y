@@ -1,4 +1,3 @@
-
 %{
 
 #define YYERROR_VERBOSE 1
@@ -111,11 +110,11 @@ body:
 	
 command_list: 
 			command
-			| command command_list
+			| command_list command 
 			;
 	
 command: 
-		simple_command ';' 
+		simple_command SEMICOLON 
 		| body 
 		| if_body 
 		| loop 
@@ -182,11 +181,11 @@ function_call:
 			;
 	
 argument_list : 
-				| first_argument_list | 
+				| first_argument_list 
 				;
 first_argument_list: 
 					argument 
-					| argument ',' first_argument_list
+					| first_argument_list ',' argument
 					;
 
 argument: 
@@ -315,28 +314,21 @@ glob:
 			
 	
 %%
-
-
 #include <stdio.h>
 extern char yytext[];
 extern int column;
-
 yyerror(char const *s)
 {
 	
 	printf("\n%d\n", yylineno);
 	fflush(stdout);
-
 	fprintf(stderr, "%s", s);
 }
-
 lex()
 {
 	printf("\n%s\n", stdin);
 }
-
 int main()
 {
 	return(yyparse());
 }
-
