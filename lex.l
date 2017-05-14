@@ -20,6 +20,8 @@ void count();
 %%
 [#].*\n { count(); return(COMMENT); }
 "function" { count(); return(FUNCTION); }
+"local_var" { count(); return(LOCAL); }
+"global_var" { count(); return(GLOBAL); }
 ">>=" { count(); return(RIGHT_ASSIGN); }
 ">>>=" { count(); return(RIGHT_RIGHT_ASSIGN); }
 "<<=" { count(); return(LEFT_ASSIGN); }
