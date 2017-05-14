@@ -18,7 +18,7 @@ void count();
 
 
 %%
-[#].*\n { count(); return(COMMENT); }
+[#].* { count(); return(COMMENT); }
 "function" { count(); return(FUNCTION); }
 "local_var" { count(); return(LOCAL); }
 "global_var" { count(); return(GLOBAL); }
@@ -61,7 +61,7 @@ void count();
 "~" { count(); return(BIT); }
 "->" { count(); return(ARROW); }
 \"([^\\"\r\n]|(\\.))*\" { count(); return(STR_FIRST); }
-[0-9]+ { count(); return(INTEGER); }
+[-]?[0-9]+ { count(); return(INTEGER); }
 
 "else" { count(); return (ELSE); }
 
