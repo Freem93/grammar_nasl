@@ -6,7 +6,7 @@ flex.exe lex.l
 bison.exe -dy nasl_grammar.y
 gcc lex.yy.c y_tab.c -o parse.exe
 
-parse.exe < tests\signed.nasl
+parse.exe < tests\signed.nasl 
 parse.exe < tests\test_blowfish.nasl
 parse.exe < tests\test_bn.nasl
 parse.exe < tests\test_dh.nasl
@@ -19,4 +19,6 @@ parse.exe < tests\test_rsa.nasl
 parse.exe < tests\test_socket.nasl
 parse.exe < tests\testsuiteinit.nasl
 parse.exe < tests\testsuitesummary.nasl
+parse.exe < tests\test_script_signing.sh
+
 pause
