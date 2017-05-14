@@ -64,6 +64,7 @@ void count();
 [0-9]+ { count(); return(INTEGER); }
 
 "else" { count(); return (ELSE); }
+
 "if" { count(); return(IF); }
 "include" { count(); return(INCLUDE); }
 "return" { count(); return(RETURN); }
@@ -76,7 +77,7 @@ void count();
 "while" { count(); return(WHILE); }
 "repeat" { count(); return(REPEAT); }
 "until" { count(); return(UNTIL); }
-[a-zA-Z_0-9]+ { count(); return(IDENTIFIER); }
+
 
 
 "><" { count(); return(SEARCH_SUBSTR); }
@@ -98,10 +99,10 @@ void count();
 
 
 
-
+[a-zA-Z_0-9]+ { count(); return(IDENTIFIER); }
 
 [ \t\v\n\f] { count(); }
-. { /* ignore bad characters */ }
+
 
 %%
 

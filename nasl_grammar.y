@@ -107,6 +107,7 @@ first_argument_declaration:
 body: 
 	LEFT_BRACE command_list RIGHT_BRACE 
 	| LEFT_BRACE RIGHT_BRACE 
+	| command ELSE 
 	;
 	
 command_list: 
@@ -139,7 +140,7 @@ ret:
 	
 if_body: 
 		IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command 
-		| IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command ELSE command 
+		| IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS command ELSE command
 		;
 	
 loop: 
