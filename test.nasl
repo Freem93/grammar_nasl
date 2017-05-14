@@ -2,6 +2,7 @@
 # KillerApp check
 #
 
+
 for(i = 1; i < 10; i++)
 {
 	display(i, "\n");

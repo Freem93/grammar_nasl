@@ -101,7 +101,7 @@ argument_declaration:
 
 first_argument_declaration: 
 							identifier 
-							| identifier ',' first_argument_declaration
+							| identifier COMMA first_argument_declaration
 							;
 
 body: 
