@@ -152,6 +152,7 @@ loop:
 
 for_loop: 
 		FOR LEFT_PARENTHESIS aff_func SEMICOLON expression SEMICOLON aff_func RIGHT_PARENTHESIS command
+		| FOR LEFT_PARENTHESIS aff_func SEMICOLON SEMICOLON aff_func RIGHT_PARENTHESIS command
 		;
 
 while_loop: 
@@ -232,8 +233,7 @@ post_pre_command:
 				| lvalue DEC_OP 
 				;
 				
-expression:
-			LEFT_PARENTHESIS expression RIGHT_PARENTHESIS
+expression: LEFT_PARENTHESIS expression RIGHT_PARENTHESIS
 			| expression AND_OP expression
 			| NOT expression 
 			| expression OR_OP expression
