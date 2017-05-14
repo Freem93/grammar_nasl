@@ -5,7 +5,7 @@
 #define YYPRINT(file, type, value) fprintf(file, "%d", value);
 extern int yylineno;
 %}
-
+%token FUNCTION
 %token EQ NE LT GT LE GE
 %token SEARCH_SUBSTR
 %token NOT_SEARCH_SUBSTR

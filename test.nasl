@@ -5,7 +5,7 @@
 
 if(description)
 {
-	script_id(50000);   
+	script_id(50000);   #sfsfsf
 	script_name(english:"Check for KillerApp");
 	script_description(english:"KillerApp is a high-risk application and should be removed.");
 	script_summary(english:"Checks for KillerApp");

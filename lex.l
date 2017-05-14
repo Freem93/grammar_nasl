@@ -19,6 +19,7 @@ void count();
 
 %%
 [#].*\n { count(); return(COMMENT); }
+"function" { count(); return(FUNCTION); }
 ">>=" { count(); return(RIGHT_ASSIGN); }
 ">>>=" { count(); return(RIGHT_RIGHT_ASSIGN); }
 "<<=" { count(); return(LEFT_ASSIGN); }
