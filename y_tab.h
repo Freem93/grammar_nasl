@@ -65,10 +65,11 @@
 #define	ARROW	319
 #define	ASSIGN_BIT	320
 #define	INTEGER	321
-#define	IDENTIFIER	322
-#define	LOCAL	323
-#define	GLOBAL	324
-#define	COMMENT	325
+#define	IF_1	322
+#define	IDENTIFIER	323
+#define	LOCAL	324
+#define	GLOBAL	325
+#define	COMMENT	326
 
 
 extern YYSTYPE yylval;

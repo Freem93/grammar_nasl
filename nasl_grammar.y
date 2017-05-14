@@ -66,8 +66,9 @@ extern int yylineno;
 %token ASSIGN_BIT
 
 %token INTEGER
-
+%token IF_1
 %token IDENTIFIER
+
 %token LOCAL
 %token GLOBAL
 %token COMMENT
@@ -77,7 +78,7 @@ extern int yylineno;
 %%
 
 start: 
-	|command_declaration_list 
+	|command_declaration_list  {printf("_____simple");}
 	;
 	
 command_declaration_list:
@@ -115,20 +116,22 @@ command_list:
 	
 command: 
 		simple_command {printf("_____simple");}
-		| body   
+		| body 
+		| loop 
+		| if_body
 		| COMMENT
 		;
 		
-simple_command: 
-				| aff 
-				| post_pre_command 
-				| function_call {printf("_____if");}
-				| ret 
-				| inc
-				| loc 
-				| glob
-				| BREAK 
-				| CONTINUE 
+simple_command: SEMICOLON
+				| aff SEMICOLON
+				| post_pre_command
+				| function_call 
+				| ret SEMICOLON
+				| inc SEMICOLON
+				| loc SEMICOLON
+				| glob SEMICOLON
+				| BREAK SEMICOLON
+				| CONTINUE SEMICOLON
 				;
 				
 ret: 
@@ -175,11 +178,11 @@ inc:
 	;
 	
 function_call: 
-			identifier LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS SEMICOLON 
-			| identifier LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS
-			| if_body
-			| loop
+			 IF_1 LEFT_PARENTHESIS expression RIGHT_PARENTHESIS {printf("_____if");}
+			 | IDENTIFIER LEFT_PARENTHESIS expression RIGHT_PARENTHESIS {printf("_____call");}
 			;
+body_end:
+		;
 	
 argument_list : 
 				| first_argument_list 
@@ -277,7 +280,7 @@ list_array_data:
 
 array_data: 
 			simple_array_data 
-			| identifier ARROW simple_array_data 
+			| STR_FIRST ARROW simple_array_data 
 			;
 			
 		
