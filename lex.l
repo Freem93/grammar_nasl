@@ -55,7 +55,7 @@ void count();
 "!~" { count(); return(NOT_BIT); }
 "~" { count(); return(BIT); }
 "->" { count(); return(ARROW); }
-[\"\']([^\\"\r\n]|(\\.))*[\'\"] { count(); return(STR_FIRST); }
+(\"|\')([^\\"\r\n]|(\\.))*(\'|\") { count(); return(STR_FIRST); }
 ([-]?[0-9]+|0[xX]{H}+) { count(); return(INTEGER); }
 
 "else" { count(); return (ELSE); }
