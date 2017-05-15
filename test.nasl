@@ -67,13 +67,13 @@ q = 0 % 0;
 if (q = foo());
 while (q = foo());
 q = [];
-#q = [[[]], [[]], [[]]]; #todo
+#todo# q = [[[]], [[]], [[]]];
 q = [1];
-#q = [1, 'b', foo()]; #todo
+#todo# q = [1, 'b', foo()];
 foo(arg:[1]);
 q = [] + [];
 q = [] + [];
-#todo#q = {'a':{'b':{}}, 'c':{'d':{}}, 'e':{'f':{}}};
+#todo# q = {'a':{'b':{}}, 'c':{'d':{}}, 'e':{'f':{}}};
 q = {"a":1};
 q = {1:1, 2:'b', 3:foo()};
 foo(arg:{1:1});
@@ -85,6 +85,7 @@ q = {} + {};
 ;;;
 
 #test block
+
 {
 	a = 1;
 	break;
@@ -107,24 +108,24 @@ q = {} + {};
 #break(); #must be fail
 #continue(); #must be fail
 #else(); #must be fail
-#todo#export(); #must be fail
+#export(); #must be fail
 #for(); #must be fail
 #foreach(); #must be fail
 #function(); #must be fail
 #global_var(); #must be fail
 #if(); #must be fail
-#todo#import(); #must be fail
+#import(); #must be fail
 #include(); #must be fail
 #local_var(); #must be fail
 #local_var(); #must be fail
 #return(); #must be fail
 #until(); #must be fail
 #while(); #must be fail
-#todo#FALSE(); #must be fail
-#todo#NULL(); #must be fail
-#todo#TRUE(); #must be fail
+#todo# FALSE(); #must be fail
+#todo# NULL(); #must be fail
+#todo# TRUE(); #must be fail
 
-#todo#in();
+in();
 x();
 break_();
 continue_();
@@ -146,10 +147,10 @@ FALSE_();
 NULL_();
 TRUE_();
 
-#todo#foo[a][1]['b'][c+d].e.f.g(); #test_no_args
-#todo#foo[a][1]['b'][c+d].e.f.g(1, '2', three); #test_anonymous_args
-#todo#foo[a][1]['b'][c+d].e.f.g(a:1, b:'2', c:three) #test_named_args
-#todo#foo[a][1]['b'][c+d].e.f.g(a:1, '2', c:three, bar()); #test_mixed_args
+#todo# foo[a][1]['b'][c+d].e.f.g(); #test_no_args
+#todo# foo[a][1]['b'][c+d].e.f.g(1, '2', three); #test_anonymous_args
+#todo# foo[a][1]['b'][c+d].e.f.g(a:1, b:'2', c:three) #test_named_args
+#todo# foo[a][1]['b'][c+d].e.f.g(a:1, '2', c:three, bar()); #test_mixed_args
 
 
 #Constant tests
@@ -177,8 +178,8 @@ q = (((a = b)));
 q = 0 | 1;
 q = 0 & 1;
 
-#todo#q = a.b; #test period
-#todo#q = a._;
+#todo# q = a.b; #test period
+#todo# q = a._;
 #q = a.1 #must be fail
 q = a + b / c + d;
 
@@ -205,11 +206,11 @@ foreach foo (bar);
 #function return() {} #must be fail
 #function until() {} #must be fail
 #function while() {} #must be fail
-#todo#function FALSE() {} #must be fail
-#todo#function NULL() {} #must be fail
-#todo#function TRUE() {} #must be fail
-#todo#function in() {} #must be fail
-#todo#function x() {} #must be fail
+#todo# function FALSE() {} #must be fail
+#todo# function NULL() {} #must be fail
+#todo# function TRUE() {} #must be fail
+#function in() {} #must be fail
+#todo# function x() {} #must be fail
 
 
 function break_() {}
@@ -241,7 +242,7 @@ function foo(a, &b, c) {} #test mixed args
 
 #test global
 
-global_var;
+#global_var; #must be fail
 global_var a, b, c;
 global_var a = 1;
 global_var a = 1, b = 2, c = 3;
@@ -251,7 +252,7 @@ global_var a, b = 2, c = @c;
 
 #test include
 
-include (); #must be fail
+#include (); #must be fail
 include ('');
 include ('q.inc');
 include ("");
@@ -260,25 +261,25 @@ include ("q.inc");
 
 #test incr decr
 
-q()++; #must be fail
+#q()++; #must be fail
 
 q++;
 q[1]++;
-q[1][2]++;
-q[1][3]++;
+#todo# q[1][2]++;
+#todo# q[1][3]++;
 
 ++q;
 ++q[1];
-++q[1][2];
-++q[1][3];
+#todo# ++q[1][2];
+#todo# ++q[1][3];
 
 q["a"]++;
-q["a"]["b"]++;
-q["a"]["b"]["c"]++;
+#todo# q["a"]["b"]++;
+#todo# q["a"]["b"]["c"]++;
 
 ++q["a"];
-++q["a"]["b"];
-++q["a"]["b"]["c"];
+#todo# ++q["a"]["b"];
+#todo# ++q["a"]["b"]["c"];
 
 
 #test ip
@@ -293,7 +294,7 @@ foo = [];
 
 #test locals
 
-local_var; #must be fail
+#local_var; #must be fail
 
 local_var a, b, c;
 local_var a = 1, b = 2, c = 3;
@@ -303,16 +304,16 @@ local_var a, b = 2, c = @c;
 
 #test repetition
 
-exit() x 10;
-exit(2, 3) x 10;
+#todo# exit() x 10;
+#todo# exit(2, 3) x 10;
 
 
 #return tests
 
-return() #must be fail
-return(); #nust be fail
-return[] #must be fail
-return{} #must be fail
+#return() #must be fail
+#return(); #nust be fail
+#return[] #must be fail
+#return{} #must be fail
 
 return;
 return[];
@@ -349,10 +350,10 @@ while (foo) {}
 # foo\n# bar
 
 
-if (); #must be fail
-if (1) #must be fail
+#if (); #must be fail
+#todo# if (1) #must be fail
 
-if(){} #must be fail
+#if(){} #must be fail
 
 
 if(1){}

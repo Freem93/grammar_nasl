@@ -220,7 +220,8 @@ inc:
 function_call:
 			if_body  	
 			| loop
-			| IDENTIFIER LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS
+			| identifier LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS
+			| IN_ITER LEFT_PARENTHESIS argument_list RIGHT_PARENTHESIS
 			;
 	
 argument_list : 
@@ -351,11 +352,11 @@ ipaddr:
 		;
 
 loc: 
-	LOCAL argument_declaration
+	LOCAL first_argument_declaration
 	;
 
 glob: 
-	GLOBAL argument_declaration
+	GLOBAL first_argument_declaration
 	;		
 			
 	
