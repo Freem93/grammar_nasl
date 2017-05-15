@@ -51,6 +51,7 @@ void count();
 "&" { count(); return(AND); }
 "!" { count(); return(NOT); }
 
+
 "=~" { count(); return(ASSIGN_BIT); }
 "!~" { count(); return(NOT_BIT); }
 "~" { count(); return(BIT); }
@@ -69,9 +70,12 @@ void count();
 "continue" { count(); return(CONTINUE); }
 "for" { count(); return(FOR); }
 "foreach" { count(); return(FOREACH); }
+"in" { count(); return(IN_ITER); }
 "while" { count(); return(WHILE); }
 "repeat" { count(); return(REPEAT); }
 "until" { count(); return(UNTIL); }
+"export" { count(); return(EXPORT); }
+"import" { count(); return(IMPORT); }
 
 
 

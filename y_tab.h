@@ -71,6 +71,12 @@
 #define	LOCAL	325
 #define	GLOBAL	326
 #define	COMMENT	327
+#define	IN_ITER	328
+#define	UPLUS	329
+#define	UMINUS	330
+#define	EXPORT	331
+#define	IMPORT	332
+#define	REFERENCE	333
 
 
 extern YYSTYPE yylval;

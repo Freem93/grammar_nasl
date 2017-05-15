@@ -73,6 +73,11 @@ extern int yylineno;
 %token GLOBAL
 %token COMMENT
 
+%token IN_ITER
+%token UPLUS UMINUS
+%token EXPORT
+%token IMPORT
+%token REFERENCE
 
 %start start
 %%
@@ -102,6 +107,10 @@ argument_declaration:
 first_argument_declaration: 
 							identifier 
 							| identifier COMMA first_argument_declaration
+							| AND identifier
+							| AND identifier COMMA first_argument_declaration
+							| lvalue ASSIGN expression
+							| lvalue ASSIGN expression COMMA first_argument_declaration
 							;
 
 body: 
@@ -114,6 +123,7 @@ body_arg:
 		LEFT_BRACE first_argument_list_brace RIGHT_BRACE 
 		| LEFT_SQ_BRACKET first_argument_list_bracket RIGHT_SQ_BRACKET
 		;
+
 first_argument_list_bracket: 
 						| argument_bracket
 						| first_argument_list_bracket COMMA argument_bracket
@@ -128,6 +138,7 @@ argument_brace:
 				brace_ident COLON brace_ident 
 				| brace_ident COLON function_call 
 				;
+
 argument_bracket: 
 				 LEFT_SQ_BRACKET RIGHT_SQ_BRACKET   
 				 | function_call
@@ -193,6 +204,7 @@ repeat_loop:
 
 foreach_loop: 
 			FOREACH identifier LEFT_PARENTHESIS expression RIGHT_PARENTHESIS  command
+			| FOREACH LEFT_PARENTHESIS identifier IN_ITER expression RIGHT_PARENTHESIS command
 			;
 
 aff_func: 
@@ -258,6 +270,8 @@ post_pre_command:
 				| DEC_OP lvalue
 				| lvalue INC_OP 
 				| lvalue DEC_OP 
+				| SUB lvalue %prec UMINUS
+				| ADD lvalue %prec UPLUS
 				;
 				
 expression: LEFT_PARENTHESIS expression RIGHT_PARENTHESIS
